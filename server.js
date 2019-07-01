@@ -2,14 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
-
+const morgan = require('morgan')
 const app = express();
 const db = require('./config/keys').mongoURI;
 const Items = require('./routes/api/items');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(morgan('tiny'))
 mongoose
 	.connect(db, { useNewUrlParser: true })
 	.then(() => {
